@@ -30,11 +30,12 @@ void Line::setFromAtoB(const Vector3 & A, const Vector3 & B) {
 	m_d = B-A;
 
 	//mensaje al usuario
-	if(m_d.length() < 0.1){
+	//constants::distance_epsilon
+	if(m_d.length() < 1e-6){
 		printf("A y B estan muy juntos");
 	}
 
-	m_d = m_d.normalize():
+	m_d = m_d.normalize();
 
 	/* =================== END YOUR CODE HERE ====================== */
 }
@@ -44,7 +45,7 @@ void Line::setFromAtoB(const Vector3 & A, const Vector3 & B) {
 Vector3 Line::at(float u) const {
 	Vector3 res;
 	/* =================== PUT YOUR CODE HERE ====================== */
-	res = m_o + u*m_d;
+	res = m_O + u*m_d;
 
 	/* =================== END YOUR CODE HERE ====================== */
 	return res;
@@ -57,7 +58,14 @@ Vector3 Line::at(float u) const {
 float Line::paramDistance(const Vector3 & P) const {
 	float res = 0.0f;
 	/* =================== PUT YOUR CODE HERE ====================== */
-	if(dot(m_d, m_d) = 0) return 0;
+	
+	float div = m_d.dot(m_d);
+
+	if(div == 0) return 0;
+
+	Vector3 Paux = P - m_O;
+
+	res = m_d.dot(Paux) / div;
 
 	//devolver Uo para usar luego en distance
 	//COMPROBAR QUE NO HAY DIVISION POR CERO --> DEVOLVER 0
@@ -69,11 +77,16 @@ float Line::paramDistance(const Vector3 & P) const {
 //
 // dist = ||P - (m_o + u0*m_d)||
 // Where u0 = paramDistance(P)
-//(m_o + u0*m_d) at
 
 float Line::distance(const Vector3 & P) const {
 	float res = 0.0f;
 	/* =================== PUT YOUR CODE HERE ====================== */
+
+	float u0 = paramDistance(P);
+
+	Vector3 Paux = at(u0);
+
+	res = Paux.length();
 
 	/* =================== END YOUR CODE HERE ====================== */
 	return res;
