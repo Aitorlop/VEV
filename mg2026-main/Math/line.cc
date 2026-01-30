@@ -45,6 +45,7 @@ void Line::setFromAtoB(const Vector3 & A, const Vector3 & B) {
 Vector3 Line::at(float u) const {
 	Vector3 res;
 	/* =================== PUT YOUR CODE HERE ====================== */
+	
 	res = m_O + u*m_d;
 
 	/* =================== END YOUR CODE HERE ====================== */
@@ -84,9 +85,11 @@ float Line::distance(const Vector3 & P) const {
 
 	float u0 = paramDistance(P);
 
-	Vector3 Paux = at(u0);
+	Vector3 v_Pprima = at(u0);
 
-	res = Paux.length();
+	Vector3 v_distancia = v_Pprima - P;
+
+	res = v_distancia.length();
 
 	/* =================== END YOUR CODE HERE ====================== */
 	return res;
