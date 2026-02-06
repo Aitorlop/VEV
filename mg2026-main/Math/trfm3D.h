@@ -111,7 +111,7 @@ public:
 	/*!
 	  \note V must be an unit vector
 	*/
-	void setRotAxis(const Vector3 & V, const Vector3 & P, float angle );
+	void setRotAxis(const Vector3 & V, const Vector3 & P, float angle );		//LA INICIALIZA (MACHACA PARA CREAR UNA NUEVA)
 
 	/**
 	 * Set the trfm so that it performs a parallel projection given by the
@@ -175,7 +175,7 @@ public:
 	// Add functions
 
 	void addRotX(float angle ); //!< Add the specified trfm a rotation of angle radians in the X axis
-	void addRotY(float angle ); //!< Add the specified trfm a rotation of angle radians in the Y axis
+	void addRotY(float angle ); //!< Add the specified trfGet a rotation of angle radians in the Y axis
 	void addRotZ(float angle ); //!< Add the specified trfm a rotation of angle radians in the Z axis
 	void addRotVec(const Vector3 & V, float theta ); //!< add to the trfm a rotation of theta radians on arbitrary axis V
 	void addRotAxis(const Vector3 & V, const Vector3 & P, float theta); //!< add to the trfm a rotation of theta radians on arbitrary axis R located at point P

@@ -41,17 +41,7 @@ public:
 	void translate(const Vector3 & P);
 
 	/**
-	 * Normalize the plane (normalize plane normal and set distance accordingly)
-	 */
-	void normalize();
-
-	//! Decides in which side a point lies respect to a plane
-	/*!
-	  \return
-	  - 0  point lies on the plane
-	  - +1 point lies outside the plane (possitive side)
-	  - -1 point lies inside the plane (negative side)
-
+	 * Normalize the plane (normalize plane normal and set distance accordingly)distance_epsilon
 	  \note the plane must not be normalized
 	*/
 	int whichSide(const Vector3 & P);

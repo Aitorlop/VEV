@@ -266,11 +266,15 @@ Node * Node::cycleChild(size_t idx) {
 // Add a child to node
 // Print a warning (and do nothing) if node already has an gObject.
 
+
 void Node::addChild(Node *theChild) {
 	if (theChild == 0) return;
 	if (m_gObject) {
 		/* =================== PUT YOUR CODE HERE ====================== */
 		// node has a gObject, so print warning
+
+		//hacer un printf diciendo que es nodo hojs
+		//y no puedes meter un nodo a un nodo hoja
 
 		/* =================== END YOUR CODE HERE ====================== */
 	} else {
@@ -387,7 +391,7 @@ void Node::updateGS() {
 //
 // RenderState *rs = RenderState::instance();
 //
-// rs->addTrfm(RenderState::modelview, T); // Add T transformation to modelview
+// rs->addTrfm(RenderState::modelview, T); // Add T transformation to modelview  
 // rs->push(RenderState::modelview); // push current matrix into modelview stack
 // rs->pop(RenderState::modelview); // pop matrix from modelview stack to current
 //
@@ -420,6 +424,28 @@ void Node::draw() {
 		BBoxGL::draw( m_containerWC);
 	}
 	/* =================== PUT YOUR CODE HERE ====================== */
+
+
+	//si el nodo (this) no es vacio es que tengo que dibujar algo ==> hay que hacer un push para meter us matriz de transformacion y luego pop. en medio hay usar la de add
+	rs->push(RenderState::modelview); 
+
+	rs->addTrfm(RenderState::modelview, m_placement);
+
+	//SI ES UN NODO HOJA ==>
+	if (m_gObject){
+		//es un nodo hoja
+		m_gObject->draw();
+	} else {
+		
+		//NO ES UN NODO HOJA, Y LO QUE HACE ES RECORRER SUS HIJOS (LLAMADA RECURSIVA)
+		for(auto & theChild : m_children) {
+			theChild->draw(); // or any other thing  IGUAL ES DRAW EN VEZ DE PRINT
+		    
+		}
+	}
+
+
+	rs->pop(RenderState::modelview);
 
 	/* =================== END YOUR CODE HERE ====================== */
 

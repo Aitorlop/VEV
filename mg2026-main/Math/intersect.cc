@@ -18,6 +18,8 @@
 int BSpherePlaneIntersect(const BSphere *bs, Plane *pl) {
 	/* =================== PUT YOUR CODE HERE ====================== */
 
+
+
 	/* =================== END YOUR CODE HERE ====================== */
 }
 
